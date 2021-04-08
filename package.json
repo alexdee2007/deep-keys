@@ -1,13 +1,13 @@
 {
-  "name": "deep-keys",
-  "version": "0.5.0",
+  "name": "@alexdee2007/deep-keys",
+  "version": "0.6.0",
   "description": "Creates an array composed of the own enumerable property names(including nested) of an object.",
   "license": "MIT",
   "repository": "a8m/deep-keys",
   "author": {
     "name": "Ariel Mashraki",
     "email": "ariel@mashraki.co.il",
-    "url": "https://github.com/a8m/deep-keys"
+    "url": "https://github.com/alexdee2007/deep-keys"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @description
@@ -7,7 +7,7 @@
  * @returns {boolean}
  */
 function isObject(value) {
-  return value !== null && typeof value === 'object' && !(value instanceof Date);
+  return value !== null && typeof value === "object" && !(value instanceof Date);
 }
 
 /**
@@ -18,24 +18,24 @@ function isObject(value) {
  */
 var isArray = Array.isArray;
 
-function deepKeys(obj, stack, parent, intermediate) {
-  Object.keys(obj).forEach(function(el) {
+function deepKeys(obj, stack, parent, intermediate, isArr) {
+  Object.keys(obj).forEach(function (el) {
     // Escape . in the element name
-    var escaped = el.replace(/\./g, '\\\.');
+    var escaped = el.replace(/\./g, "\\.");
     // If it's a nested object
-    if(isObject(obj[el]) && !isArray(obj[el])) {
+    if (isObject(obj[el])) {
       // Concatenate the new parent if exist
-      var p = parent ? parent + '.' + escaped : parent;
+      var p = parent ? parent + (isArr ? "[" + escaped + "]" : "." + escaped) : parent;
       // Push intermediate parent key if flag is true
       if (intermediate) stack.push(parent ? p : escaped);
-      deepKeys(obj[el], stack, p || escaped, intermediate);
+      deepKeys(obj[el], stack, p || escaped, intermediate, isArray(obj[el]));
     } else {
       // Create and save the key
-      var key = parent ? parent + '.' + escaped : escaped;
-      stack.push(key)
+      var key = parent ? parent + "." + escaped : escaped;
+      stack.push(key);
     }
   });
-  return stack
+  return stack;
 }
 
 /**
